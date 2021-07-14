@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style type="text/css">
+		* {
+			list-style: none;
+			margin: 0;
+			padding: 0;
+		}
+		.box {
+			height: 300px;
+			width: 500px;
+			margin: 100px auto;
+			border: 1px solid #ccc;
+		}
+		.tee {
+			 margin-left: 50px;
+		}
+		.comment-box {
+			margin:30px;
+		}
+		.comment-box ul li {
+			color: orange;
+			font-size: 16px;
+			border-bottom: 1px solid rgba(0,0,0,.1);
+		}
+		.comment-box ul li a {
+			text-decoration: none;
+			float: right;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<label class="tee">请输入</label>
+		<textarea id="comment" cols="50" rows="10"></textarea>
+		<button id="btn" style="float: right;margin-right: 25px;">发布</button>
+		<div class="comment-box">
+			<ul id="content">
+				<!-- <li>阿斯顿发生发<a href="javascript:;">删除</a></li>
+				<li>阿斯顿发生发<a href="javascript:;">删除</a></li> -->
+			</ul>
+		</div>
+	</div>
+	
+</body>
+<script type="text/javascript">
+	window.onload = function () {
+		var comment = $("comment");
+		var btn = $("btn");
+		var content = $("content");
+
+		//1.监听点击按钮事件
+		btn.onclick = function(){
+			console.log(comment.value)
+			// 2.动态创建li标签
+			var li = document.createElement("li");
+			li.innerHTML= comment.value + '<a href="javascript:;">删除</a>';
+			content.insertBefore(li,content.childNodes[0]);
+			comment.value = "";
+
+			var aList = $("content").getElementsByTagName('a');
+			//3.为删除按钮添加remove事件
+			for (var i = 0;i < aList.length; i++) {
+				var a = aList[i];
+				a.onclick = function () {
+					this.parentNode.remove();
+				}
+			}
+		};
+
+
+	};
+	function $(id){
+		return typeof id === 'string'?document.getElementById(id):null;
+	}
+</script>
+</html>

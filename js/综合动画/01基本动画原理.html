@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #box1 {
+            width: 200px;
+            height: 200px;
+            background-color: darkgreen;
+            position: absolute;
+            top: 100px;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn1">向右走</button>
+    <div id="box1"></div>
+<script src="js/myFunc.js"></script>
+<script>
+    window.onload = function () {
+        var timer = null ,targer = 600 ,step = 20;
+        $("btn1").onmousedown = function () {
+            constant($("box1"),targer,step);
+        };
+    };
+
+    /**
+     * 匀速动画函数
+     * @param obj
+     * @param target
+     * @param speed
+     */
+    function constant(obj, target, speed) {
+        // 1. 清除定时器
+        clearInterval(obj.timer);
+
+        // 2. 判断方向
+        var dir = obj.offsetLeft < target ? speed : -speed;
+
+
+        // 3. 设置定时器
+        obj.timer = setInterval(function () {
+            obj.style.left = obj.offsetLeft + dir + "px";
+
+            if(Math.abs(target - obj.offsetLeft) < Math.abs(dir)){
+                clearInterval(obj.timer);
+
+                obj.style.left = target + "px";
+                console.log(obj.offsetLeft, target);
+            }
+        }, 20);
+    }
+</script>
+</body>
+</html>

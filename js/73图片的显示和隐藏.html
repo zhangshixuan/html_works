@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+
+<body>
+	<img id="backImg" src="images/1.jpg" />
+	<p></p>
+	<button id="btn">隐藏</button>
+</body>
+<script type="text/javascript">
+	window.onload = function() {
+		//1.获取控制按钮元素
+		var btn = document.getElementById("btn");
+		//2.获取图片对象
+		var img = document.getElementById("backImg");
+		//3.按钮点击时
+		btn.onclick = function() {
+			//3.1获取按钮文字
+			var text = this.innerText;
+			if (text === "隐藏") {
+				this.innerText = "显示";
+				img.src = "";
+			} else {
+				this.innerText = "隐藏";
+				img.src = "images/1.jpg";
+			}
+		};
+	};
+</script>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>115长图滚动</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: #000;
+        }
+        .box {
+            width: 750px;
+            margin: 50px auto;
+            height: 500px;
+            overflow: hidden;
+            position: relative;
+        }
+        .box img {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .box a {
+            display: block;
+            height: 250px;
+            width: 750px;
+            position: absolute;
+            left: 0;
+        }
+        .box a:first-child {
+            top: 0;
+        }
+        .box a:last-child {
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="box" id="box">
+        <img src="images/timg.jpg" id="longImg">
+        <a href="javascript:;" class="flow_top" id="toTop"></a>
+        <a href="javascript:;" class="flow_bottom" id="toBottom"></a>
+    </div>
+</body>
+<script>
+    window.onload = function () {
+        //1.获取图片对象、上下移动触发对象
+        var longImg = document.getElementById("longImg");
+        var toTop = document.getElementById("toTop");
+        var toBottom = document.getElementById("toBottom");
+        var timer = null,num = 0;
+
+        //2.获取事件源
+        //2.1获取向上事件源
+        toTop.onmouseover = function () {
+            clearInterval(timer);
+            timer = setInterval(function () {
+                num -= 20;
+                if(num > -(2866-500)) {
+                    longImg.style.top = num+"px";
+                } else {
+                    clearInterval(timer);
+                    num = parseInt(longImg.style.top.split("px")[0]);
+                }
+            },20);
+        };
+        toTop.onmouseout = function () {
+            clearInterval(timer);
+        };
+        //3.获取向下事件源
+        toBottom.onmouseover = function () {
+            clearInterval(timer);
+            timer = setInterval(function () {
+                num += 20;
+                if(num <= 0) {
+                    longImg.style.top = num+"px";
+                } else {
+                    num = 0;
+                    clearInterval(timer);
+                }
+            },20);
+        };
+        toBottom.onmouseout = function () {
+            clearInterval(timer);
+        };
+    };
+</script>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .box {
+            width: 360px;
+            margin: 0 auto;
+        }
+        .float-img {
+            position: absolute;
+            left: 0;
+            top: 100px;
+            /*transition: all .3s*/
+        }
+        .float-img img{
+            width: 30%;
+        }
+    </style>
+</head>
+<body style="position: relative">
+    <div class="box" id="box">
+        <h1>哈哈哈哈哈哈哈哈哈哈哈</h1>
+        <h1>哈哈哈哈哈哈哈哈哈哈哈</h1>
+        <h1>哈哈哈哈哈哈哈哈哈哈哈</h1>
+        <h1>哈哈哈哈哈哈哈哈哈哈哈</h1>
+        <h1>哈哈哈哈哈哈哈哈哈哈哈</h1>
+        <h1>哈哈哈哈哈哈哈哈哈哈哈</h1>
+
+        <h1>哈哈哈哈哈哈哈哈哈哈哈</h1>
+        <h1>哈哈哈哈哈哈哈哈哈哈哈</h1>
+        <h1>哈哈哈哈哈哈哈哈哈哈哈</h1>
+        <h1>哈哈哈哈哈哈哈哈哈哈哈</h1>
+        <h1>哈哈哈哈哈哈哈哈哈哈哈</h1>
+        <h1>哈哈哈哈哈哈哈哈哈哈哈</h1>
+        <h1>哈哈哈哈哈哈哈哈哈哈哈</h1>
+        <h1>哈哈哈哈哈哈哈哈哈哈哈</h1>
+        <h1>哈哈哈哈哈哈哈哈哈哈哈</h1>
+        <h1>哈哈哈哈哈哈哈哈哈哈哈</h1>
+        <h1>哈哈哈哈哈哈哈哈哈哈哈</h1><h1>哈哈哈哈哈哈哈哈哈哈哈</h1><h1>哈哈哈哈哈哈哈哈哈哈哈</h1>
+        <h1>哈哈哈哈哈哈哈哈哈哈哈</h1><h1>哈哈哈哈哈哈哈哈哈哈哈</h1><h1>哈哈哈哈哈哈哈哈哈哈哈</h1><h1>哈哈哈哈哈哈哈哈哈哈哈</h1>
+        <h1>哈哈哈哈哈哈哈哈哈哈哈</h1>
+        <h1>哈哈哈哈哈哈哈哈哈哈哈</h1>
+
+        <h1>哈哈哈哈哈哈哈哈哈哈哈</h1>
+
+        <h1>哈哈哈哈哈哈哈哈哈哈哈</h1>
+
+        <h1>哈哈哈哈哈哈哈哈哈哈哈</h1>
+
+        <h1>哈哈哈哈哈哈哈哈哈哈哈</h1>
+
+        <h1>哈哈哈哈哈哈哈哈哈哈哈</h1>
+
+        <h1>哈哈哈哈哈哈哈哈哈哈哈</h1>
+
+
+        <h1>哈哈哈哈哈哈哈哈哈哈哈</h1>
+
+        <h1>哈哈哈哈哈哈哈哈哈哈哈</h1>
+
+        <h1>哈哈哈哈哈哈哈哈哈哈哈</h1>
+
+        <h1>哈哈哈哈哈哈哈哈哈哈哈</h1>
+
+        <h1>哈哈哈哈哈哈哈哈哈哈哈</h1>
+
+        <h1>哈哈哈哈哈哈哈哈哈哈哈</h1>
+
+
+        <h1>哈哈哈哈哈哈哈哈哈哈哈</h1>
+
+        <h1>哈哈哈哈哈哈哈哈哈哈哈</h1>
+
+        <h1>哈哈哈哈哈哈哈哈哈哈哈</h1>
+
+        <h1>哈哈哈哈哈哈哈哈哈哈哈</h1>
+
+        <h1>哈哈哈哈哈哈哈哈哈哈哈</h1>
+
+        <h1>哈哈哈哈哈哈哈哈哈哈哈</h1>
+
+        <h1>哈哈哈哈哈哈哈哈哈哈哈</h1>
+
+
+    </div>
+    <div class="float-img" id="float_img">
+        <img src="images/float.jpg"/>
+    </div>
+    <script src="js/myFunc.js"></script>
+    <script>
+        window.onload = function () {
+            var float_img = $("float_img");
+            var begin = 0,end = 0,timer = null;
+            var imgOffsetTop = float_img.offsetTop;
+
+            document.onscroll = function () {
+                clearInterval(timer);
+                var scrollTop = scroll().top;
+                end = scrollTop + imgOffsetTop;
+
+                //1.缓慢动画js写法
+                timer = setInterval(function () {
+                    begin = begin + (end - begin)*0.2;
+                    float_img.style.top = begin + "px";
+                },20);
+
+                //2.css写法在class上加transition
+                // float_img.style.top = end + "px";
+            };
+        };
+    </script>
+</body>
+</html>

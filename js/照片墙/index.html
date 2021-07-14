@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>照片墙</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            border: none;
+            list-style: none;
+        }
+        html,body,ul {
+            width: 100%;
+            height: 100%;
+        }
+        #ps {
+            position: relative;
+        }
+        #ps li {
+            height: 360px;
+            width: 250px;
+            position: absolute;
+            box-shadow: 0 0 10px #000;
+            transition: all 1s;
+        }
+
+        #ps li.current {
+            left: 50% !important;
+            top: 50% !important;
+            transform: rotate(0deg) translate(-50%, -50%) scale(1.5, 1.5) !important;
+            z-index: 99;
+        }
+    </style>
+</head>
+<body>
+    <ul id="ps"></ul>
+<script src="js/underscore-min.js"></script>
+<script>
+    window.onload = function () {
+        var ul = document.getElementById("ps");
+        for (var i = 0;i<10;i++){
+            var li = document.createElement("li");
+            var img = document.createElement("img");
+            img.src = "images/pic"+(i+1)+".jpg";
+            li.appendChild(img);
+            ul.appendChild(li);
+        }
+        //将所有li标签随机显示在窗口中
+        var clientH = document.documentElement.clientHeight-360;
+        var clientW = document.documentElement.clientWidth-250;
+        var allLi = ul.children;
+        for (var j = 0;j<allLi.length;j++) {
+            var li = allLi[j];
+            li.style.top = _.random(0,clientH) + "px";
+            li.style.left = _.random(0,clientW) + "px";
+            li.style.transform = "rotate("+_.random(0,360)+"deg)";
+            li.onclick = function () {
+                for(var i=0;i<allLi.length;i++) {
+                    allLi[i].className = "";
+                }
+                this.className = "current";
+            };
+        };
+    };
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            position: relative;
+        }
+        div {
+            height: 150px;
+            width: 150px;
+            background-color: orangered;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<button id="btn">向左走</button>
+<button id="btn1">向右走</button>
+<div id="box"></div>
+<script src="js/myFunc.js"></script>
+<script>
+    window.onload = function () {
+        var btn = $("btn"),box = $("box"),btn1=$("btn1");
+
+        //1.设置定时器，让其动起来
+        btn.onmousedown = function () {
+            buffer(box,800)
+        };
+        btn1.onmousedown = function () {
+            buffer(box,200)
+        }
+    };
+
+    function buffer(obj,target) {
+        clearInterval(obj.timer);
+        //1.1设置定时器
+        obj.timer = setInterval(function () {
+            var speed = target>obj.offsetLeft?Math.ceil((target-obj.offsetLeft)*0.2):Math.floor((target-obj.offsetLeft)*0.2);
+            obj.style.left = obj.offsetLeft + speed + "px";
+            if(obj.offsetLeft === target) {
+                clearInterval(obj.timer);
+            }
+        },20);
+    }
+</script>
+</body>
+</html>

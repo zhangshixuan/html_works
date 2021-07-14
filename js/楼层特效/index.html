@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            border: 0;
+        }
+        html, body, ul {
+            height: 100%;
+            width: 100%;
+        }
+        .ol_d {
+            height: 200px;
+            width: 50px;
+            background-color: #ccc;
+            border: 1px solid #fff;
+            position: fixed;
+            top: 100px;
+            left: 50px;
+        }
+        .ol_d li {
+            width: 100%;
+            height: 40px;
+            line-height: 40px;
+            color: #FFFFFF;
+        }
+        .ol_d li:hover {
+            cursor: pointer;
+        }
+        .ol_d li.current {
+            background-color: orangered;
+        }
+        .ul_d li {
+            height: 100%;
+            width: 100%;
+            background-color: red;
+            color: #FFFFFF;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <ol class="ol_d" id="ol">
+        <li class="current">第一层</li>
+        <li>第二层</li>
+        <li>第三层</li>
+        <li>第四层</li>
+        <li>第五层</li>
+    </ol>
+    <ul class="ul_d" id="ul">
+        <li>第一层楼</li>
+        <li>第二层楼</li>
+        <li>第三层楼</li>
+        <li>第四层楼</li>
+        <li>第五层楼</li>
+    </ul>
+<script src="js/myFunc.js">
+</script>
+<script>
+    window.onload = function () {
+      var ol = $("ol");
+      var ul = $("ul");
+      var olList = ol.children;
+      var ulList = ul.children;
+      var colorArr = ["green","blue","purple","#000","yellow"];
+
+      var isClick = false;
+
+        //0.楼层随机颜色
+      for (var k=0; k<colorArr.length; k++) {
+          ulList[k].style.backgroundColor = colorArr[k];
+        }
+
+      //1.点击导航，切换当前点击的导航
+      for (var i=0; i<olList.length; i++) {
+          (function (index) {
+              var ol = olList[index];
+              ol.onmousedown = function () {
+                  isClick = true;
+                  for (var j=0; j<olList.length; j++) {
+                      olList[j].className = "";
+                  }
+                  this.className = "current";
+                  //1.1让楼层动起来
+                  buffer(document.documentElement,{scrollTop:index * client().height},function () {
+                      isClick = false;
+                  });
+              };
+          })(i);
+      }
+
+      //2.滚动的时候定位导航
+      window.onscroll = function () {
+          if(!isClick) {
+              var roll = Math.ceil(scroll().top);
+              //2.1如果屏幕上卷的距离大于盒子距离上面高度，则需要切换楼层
+              for(var i=0; i<ulList.length; i++) {
+                  var ul_single = ulList[i];
+                  if(roll >= ul_single.offsetTop) {
+                      for(var j=0; j<olList.length; j++){
+                          olList[j].className = "";
+                      }
+                      olList[i].className = "current";
+                  }
+              }
+          }
+      };
+
+    };
+</script>
+</body>
+</html>

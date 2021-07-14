@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title></title>
+		<script type="text/javascript" src="jquery-2.1.1.min.js" ></script>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+				font-family: "微软雅黑"
+			}
+			a {
+				text-decoration: none;
+			}
+			.nav {	
+				margin: 0px auto;
+				height: 34px;
+				background-color: #f7f7f7;
+				border: 1px solid #dbdee1;
+				border-left: 1px solid #fff;
+				width: 358px;
+			}
+			.nav a {
+				text-align: center;
+				font-size: 16px;
+				color: #000;
+				text-decoration: none;
+				line-height: 28px;
+				display: inline-block;
+				width: 58px;
+				height: 32px;
+			}
+			.nav a:hover {
+				color: #ff8400;
+			}
+			.selected {
+				border-top: 3px solid #ff8400;
+				background-color: #fff;
+				border-right: 1px solid #dbdee1;
+				border-left: 1px solid #dbdee1;
+			}
+			.noleft {
+				border-left: 0px solid #dbdee1 !important;
+			}
+			.content {
+				height: 90px;
+				width: 360px;
+				/*background-color: #000;*/
+				margin: 0 auto;
+			}
+			.imgDiv {
+				margin: 10px auto;
+			}
+			.imgDiv a {
+				float: left;
+			    display: block;
+			    width: 105px;
+			    height: 90px;
+			    overflow: hidden;
+			    border: 1px solid #fff;
+			    position: relative;
+			    z-index: 0
+			}
+			.imgDiv a span {
+				width: 105px;
+			    text-align: center;
+			    color: #fff;
+			    height: 20px;
+			    line-height: 14px;
+			    display: block;
+			    background: #000;
+			    font-size: 12px;
+			}
+			.imgDiv a:hover {
+				color: #ff8400;
+				border: 1px solid #e66100;
+			}
+			.imgDiv a:hover span{
+				color: #ff8400;
+			}
+			ul {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				font-size: 14px;
+				color: #666;
+			}
+			.content-bottom {
+				margin: 10px auto;
+				height: 100px;
+				width: 358px;
+			}
+			
+			.content-bottom ul li {
+			    line-height: 26px;
+			    background: url(images/square.png) no-repeat 0 center;
+			    padding-left: 10px;
+
+			}
+			.content-bottom ul a {
+			    color: #526880;
+			    padding-left: 20px;
+			    background: url(images/photoNewsLeft2.gif) no-repeat 0 center;
+			}
+			.content-bottom ul a:hover {
+			    color: #ff8400;
+			}
+		</style>
+
+</head>
+<body>
+	<div class="nav">
+		<a href="#" class="selected noleft">图片</a>
+		<a href="#">专栏</a>
+		<a href="#">热点</a>
+	</div>
+	<div class="content">
+		<div class="imgDiv" style="">
+			<a href="#"><img src="images/1.jpg" width="105" height="70"><span>嫦娥四号发射成功</span></a>
+			<a href="#" style="margin-left:19px;"><img src="images/2.jpg" width="105" height="70"><span>公交爆炸嫌犯落网</span></a>
+			<a href="#" style="margin-left:19px;"><img src="images/3.jpg" width="105" height="70"><span>他9岁推翻百年禁令</span></a>
+		</div>	
+	</div>
+	<div class="content-bottom">
+			<ul>
+				<li><a href="#">法武警逮捕高中生让其跪地 太原现过山车式高架桥</a></li>
+				<li><a href="#">成都高校开了门"爬树课" 打工妹进城不再是盲流</a></li>
+				<li><a href="#">黄山现罕见瀑布流云 洋垃圾难进中国转去东南亚</a></li>
+				<li><a href="#">宋茜全黑造型变漫画少女 娜扎少女心诠释反差萌</a></li>
+			</ul>
+	</div>
+	
+</body>
+		<script type="text/javascript">
+			$(".nav a").mouseover(function(){
+				$(".nav a").each(function(e){
+					if($(this).is(':hover')){
+						if($(this).text()=="图片"){
+							$(this).addClass("selected");
+							$(this).addClass("noleft");
+						} else {
+							$(this).addClass("selected");
+						}
+					} else {
+						$(this).removeClass();
+					}
+				});
+			});
+		</script>
+</html>

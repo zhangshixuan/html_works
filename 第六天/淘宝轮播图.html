@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		.outer {
+			height: 280px;
+			width: 520px;
+			margin: 0 auto;
+			position: relative;
+		}
+		.outer a {
+			display: block;
+			position: absolute;
+			top: 50%;
+			margin-top: -18px; 
+			height: 36px;
+			width: 24px;
+		}
+		.left {
+			left: 0;
+		}
+		.right {
+			right: 0;
+		}
+		li {
+			list-style: none;
+		}
+		.outer ul {
+			height: 13px;
+			width: 70px;
+			background: rgba(255,255,255,.3);
+			position: absolute;
+			bottom: 15px;
+			left: 50%;
+			margin-left: -35px; 
+			border-radius: 5px;
+		}
+		.outer ul li {
+			height: 8px;
+			width: 8px;
+			float: left;
+			margin: 3px;
+			background-color: #fff;
+			border-radius: 50%;
+		}
+		.outer .current {
+			background-color: orange;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="outer">
+		<img src="images/tb.jpg">
+		<a href="javascript:;" class="left"><img src="images/left.png"></a>
+		<a href="javascript:;" class="right"><img src="images/right.png"></a>
+		<ul>
+			<li class="current"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</div>
+</body>
+</html>

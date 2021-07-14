@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        body {
+            background-color: pink;
+        }
+        .box {
+            width: 900px;
+            height: 63px;
+            margin: 100px auto;
+            position: relative;
+            background: url("images/doubleOne.png") no-repeat right -15px #fff;
+            border-radius: 5px;
+        }
+        .box .t-mao {
+            background: url("images/tMall.png") no-repeat center;
+            height: 63px;
+            width: 88px;
+            position: absolute;
+            transition: all .3s;
+        }
+        .box ul {
+            height: 63px;
+            display: block;
+            /*-moz-border-radius: 5px;*/
+            /*-webkit-border-radius: 5px;*/
+            /*-o-border-radius: 5px;*/
+            border-radius: 5px;
+            position: relative;
+        }
+        .box ul li {
+            height: 63px;
+            width: 88px;
+            float: left;
+            text-align: center;
+            line-height: 70px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <span class="t-mao" id="mao"></span>
+        <ul id="bar">
+            <li>双11狂欢</li>
+            <li>服装会场</li>
+            <li>数码家电</li>
+            <li>家具建材</li>
+            <li>母婴童装</li>
+            <li>手机会场</li>
+            <li>美妆会场</li>
+            <li>进口会场</li>
+            <li>飞猪旅行</li>
+        </ul>
+    </div>
+<script>
+    window.onload = function () {
+        //1.获取ul对象
+        var ul = document.getElementById("bar");
+        //2.获取图片阴影
+        var mao = document.getElementById("mao");
+        //3.获取所有li
+        var allLi = ul.children;
+        //4.初始化阴影图片的位置，在最左侧
+        mao.style.left = "0px";
+        var maoW = mao.offsetWidth;
+        for (var i = 0;i<allLi.length;i++){
+            var li = allLi[i];
+            li.index = i;
+            li.onmouseover = function () {
+                mao.style.left = (this.index * maoW) + "px";
+            };
+        }
+        ul.onmouseout = function () {
+            mao.style.left = "0px";
+        }
+    };
+</script>
+</body>
+</html>

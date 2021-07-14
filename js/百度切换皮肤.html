@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+			list-style: none;
+			vertical-align: top;
+		}
+		body {
+			background:#000 url(images/01.jpg) no-repeat center top;
+		}
+		.box {
+			height: 160px;
+			background-color: rgba(255,255,255,.5);
+		}
+		.box ul {
+			line-height: 200px;
+			height: 200px;
+		}
+		.box ul li{
+			float: left;
+			margin: 0 10px 0 20px;
+			cursor: pointer;
+		}
+		ul li img {
+			width: 240px;
+			height: 160px;
+		}
+
+	</style>
+</head>
+
+<body>
+	<div class="box" id="box">
+		<ul>
+			<li><img src="images/01.jpg"></li>
+			<li><img src="images/02.jpg"></li>
+			<li><img src="images/03.jpg"></li>
+			<li><img src="images/04.jpg"></li>
+			<li><img src="images/05.jpg"></li>
+		</ul>
+	</div>
+</body>
+<script type="text/javascript">
+	window.onload = function(){
+		var box = document.getElementById("box");
+		var liList = box.getElementsByTagName("li");
+
+		for (var i = 0;i<liList.length;i++) {
+			var liL = liList[i];
+			//第二种写法，闭包
+			// (function(i){
+			// 	liL.onclick = function(){
+			// 		var index = i + 1;
+			// 		document.body.style.background = '#000 url(images/0'+index+'.jpg) no-repeat center top'
+			// 	};
+			// })(i);
+
+
+			//第一种写法
+			liL.index = i + 1;
+			liL.onclick = function(){
+				document.body.style.background = '#000 url(images/0'+this.index+'.jpg) no-repeat center top'
+			};
+		}
+	};
+</script>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        img {
+            vertical-align: top;
+        }
+        .box {
+            margin: 100px 0 0 100px;
+            position: relative;
+        }
+        .box .small_img {
+            height: 350px;
+            width: 350px;
+            border: 1px solid #ccc;
+            /*position: relative;*/
+        }
+        .box span {
+            height: 154px;
+            width: 154px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-color: rgba(255,255,0,.4);
+            cursor: move;
+            display: none;
+        }
+        .box ul {
+            height: 50px;
+            margin-top: 10px;
+        }
+        .box ul li {
+            float: left;
+            margin-right: 10px;
+            width: 50px;
+            height: 50px;
+        }
+        .box .big_box {
+            width: 350px;
+            height: 350px;
+            position: absolute;
+            top: 0;
+            left: 360px;
+            border: 1px solid #ccc;
+            overflow: hidden;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="small_img" id="small_box">
+            <img id="jq_s_img" src="images/pic001.jpg"/>
+            <span id="mask"></span>
+        </div>
+        <ul id="jq_ul">
+            <li><img src="images/pic0001.jpg"></li>
+            <li><img src="images/pic0002.jpg"></li>
+            <li><img src="images/pic0003.jpg"></li>
+        </ul>
+        <div class="big_box" id="big_box">
+            <img id="big_img" src="images/pic01.jpg" style="position: absolute; left:0; top:0;"/>
+        </div>
+    </div>
+<script>
+    window.onload = function () {
+        //1.获取所有底部的小图片
+        var allLi = document.getElementById("jq_ul").children;
+        //1.1获取要显示图片对象
+        var onShowImg = document.getElementById("jq_s_img");
+        var big_img = document.getElementById("big_img");
+        //2.获取所有底部的小图片，鼠标悬浮的时候，在上部显示相应的图片
+        for (var i = 0;i<allLi.length;i++) {
+            var li = allLi[i];
+            li.index = i + 1;
+            allLi[i].onmouseover = function () {
+                onShowImg.src = "images/pic00" + this.index + ".jpg";
+                big_img.src = "images/pic0" + this.index + ".jpg";
+            };
+        }
+
+        //3.监听鼠标相对于小图片区域的位置
+        var mask = document.getElementById("mask");
+        var small_box = document.getElementById("small_box");
+        var big_box = document.getElementById("big_box");
+
+        small_box.onmousemove = function (event) {
+            var event = event || window.event;
+
+            mask.style.display = "block";
+            big_box.style.display = "block";
+
+            //可视区域坐标，放大镜的x，y坐标
+            var pointX = event.clientX - small_box.offsetParent.offsetLeft - mask.offsetWidth * 0.5;
+            var pointY = event.clientY - small_box.offsetParent.offsetTop - mask.offsetHeight * 0.5;
+
+            //x轴边缘检测
+            if (pointX < 0) {
+                pointX = 0;
+            } else if (pointX >= small_box.offsetWidth - mask.offsetWidth) {
+                pointX = small_box.offsetWidth - mask.offsetWidth;
+            }
+            //y轴边缘检测
+            if(pointY < 0){
+                pointY = 0;
+            }else if(pointY >= small_box.offsetHeight - mask.offsetHeight){
+                pointY = small_box.offsetHeight - mask.offsetHeight;
+            }
+
+            // 3.1让放大镜动起来
+            mask.style.left = pointX + 'px';
+            mask.style.top = pointY + 'px';
+
+            //3.2,放大区域位置显示
+            var scale = big_img.offsetWidth / small_box.offsetWidth;
+            console.log(scale)
+            big_img.style.marginLeft =  -pointX * scale + 'px';
+            big_img.style.marginTop =  -pointY * scale + 'px';
+
+        }
+        //4.1鼠标离开可使区域，放大镜隐藏
+        small_box.onmouseout = function () {
+            mask.style.display = "none";
+            big_box.style.display = "none";
+        }
+    };
+</script>
+</body>
+</html>

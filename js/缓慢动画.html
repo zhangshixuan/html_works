@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .box {
+            height: 100px;
+            width: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="box" id="box"></div>
+<button id="btn">缓慢运动</button>
+</body>
+<script>
+    window.onload = function () {
+        var box = document.getElementById("box");
+        var btn = document.getElementById("btn");
+
+        //1.设置运动变量
+        var begin = 0,end = 800,timer = null;
+
+        btn.onclick = function () {
+            clearInterval(timer);
+            timer = setInterval(function () {
+                begin  += (end-begin)*0.3;
+                if (Math.round(begin) >= end) {
+                    begin = end;
+                    clearInterval(timer);
+                }
+                console.log(Math.round(begin))
+                box.style.marginLeft =  begin + "px";
+            },90);
+        };
+    }
+</script>
+</html>

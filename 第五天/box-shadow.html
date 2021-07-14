@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<script type="text/javascript" src="js/jquery-2.1.1.min.js" ></script>
+	<style type="text/css">
+		.sh {
+			width: 200px;
+			height: 200px;
+			background-color: #ccc;
+			margin: 100px auto;
+			
+		}
+		.shhover {
+			box-shadow: 0px 15px 30px rgba(0,0,0,0.1);
+			z-index: 10;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="sh"></div>
+</body>
+	<script type="text/javascript">
+		$(".sh").mouseover(function(){
+			$(this).stop().animate({'top':'-100px'});
+			$(this).addClass('shhover');
+		})
+	</script>
+</html>

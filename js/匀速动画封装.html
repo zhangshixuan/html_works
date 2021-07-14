@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .box {
+            height: 100px;
+            width: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="box" id="box"></div>
+    <button id="btn">匀速运动</button>
+</body>
+<script>
+    window.onload = function () {
+        var box = document.getElementById("box");
+        var btn = document.getElementById("btn");
+
+        //1.设置运动变量
+        var begin = 0,end = 599,step = 10,timer = null;
+
+        btn.onclick = function () {
+            clearInterval(timer);
+            timer = setInterval(function () {
+                begin  = begin + step;
+                if (begin >= end) {
+                    begin = end;
+                    clearInterval(timer);
+                }
+                box.style.marginLeft =  begin + "px";
+            },50);
+        };
+    }
+</script>
+</html>

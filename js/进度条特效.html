@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .progress {
+            height: 40px;
+            width: 1000px;
+            margin: 100px auto;
+            position: relative;
+        }
+        .progress .progress_bar {
+            height: 100%;
+            width: 900px;
+            background-color: #ccc;
+            border-radius: 10px;
+            position: relative;
+        }
+        .progress .percent_text {
+            position: absolute;
+            top: 0;
+            right: 20px;
+            height: 100%;
+            line-height: 40px;
+        }
+        .progress .progress_bar .progress_bar_jin {
+            height: 100%;
+            width: 0;
+            background-color: red;
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+        .progress .progress_bar span {
+            height: 55px;
+            width: 25px;
+            background-color: red;
+            border-radius: 8px;
+            display: inline-block;
+            position: absolute;
+            left: 0;
+            top: -7px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="progress" class="progress">
+        <div class="progress_bar">
+            <div class="progress_bar_jin"></div>
+            <span></span>
+        </div>
+        <div class="percent_text">0%</div>
+    </div>
+    <script>
+        window.onload = function () {
+            //1.获取所有要用到的对象
+            var progress = document.getElementById("progress");
+            var progress_bar = progress.children[0];
+            var progress_bar_jin = progress_bar.children[0];
+            var mask = progress_bar.children[1];
+            var percent_text = progress.children[1];
+
+            //2.让控制进度条的mask动起来
+            mask.onmousedown = function (event) {
+                var e = event || window.event;
+                //2.1进度条的起始位置
+                var originalX = e.clientX - mask.offsetLeft;
+
+                //2.2监听鼠标移动
+                document.onmousemove = function (event) {
+                    var e = event || window.event;
+                    //2.2.1 获取控制进度移动距离
+                    var x = e.clientX - originalX;
+
+                    //设置边界值
+                    if(x<=0) {
+                        x = 0;
+                    }
+                    if(x >= progress_bar.offsetWidth - mask.offsetWidth) {
+                        x = progress_bar.offsetWidth - mask.offsetWidth;
+                    }
+                    //2.2.2 让控制器动起来
+                    mask.style.left = x + "px";
+
+                    //2.2.3 填充进度条颜色
+                    progress_bar_jin.style.width = x + "px";
+
+                    //2.2.4 计算百分比
+                    var percent = x/(progress_bar.offsetWidth - mask.offsetWidth)*100
+                    percent_text.innerText = parseInt(percent) + "%";
+                    return false;
+                }
+            };
+            // 2.4 监听鼠标抬起
+            document.onmouseup = function () {
+                document.onmousemove = null;
+            }
+        }
+    </script>
+</body>
+</html>

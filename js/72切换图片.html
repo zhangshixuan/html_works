@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title></title>
+</head>
+
+<body>
+	<img id="backImg" src="images/1.jpg" />
+	<p></p>
+	<button id = "pre">上一张</button>
+	<button id = "next">下一张</button>
+</body>
+<script type="text/javascript">
+
+	window.onload = function () {
+
+		var backImg = document.getElementById("backImg");
+		var pre = document.getElementById("pre");
+		var next = document.getElementById("next");
+		var minIndex = 1, maxIndex = 8, curIndex = minIndex;
+		function nextImg() {
+			//方法1
+			// if (curIndex == maxIndex) {
+			// 	curIndex = minIndex;
+			// } else {
+			// 	curIndex ++;
+			// }
+			// 方法2
+			curIndex ++;
+			if(curIndex > maxIndex){
+				curIndex = minIndex;
+			}
+
+
+			backImg.setAttribute("src","images/"+curIndex+".jpg");
+		}
+		function preImg() {
+			//方法1
+			// if (curIndex == minIndex) {
+			// 	curIndex = maxIndex;
+			// } else {
+			// 	curIndex --;
+			// }
+			//方法2
+			curIndex --;
+			if(curIndex < minIndex) {
+				curIndex = maxIndex;
+			}
+			backImg.setAttribute("src","images/"+curIndex+".jpg");
+		}
+		next.onclick = nextImg;
+		pre.onclick = preImg;
+
+		// var t = window.setInterval(nextImg, 2000);
+
+	}
+</script>
+</html>

@@ -1,0 +1,121 @@
+/**
+ * 	index主体开始
+ */
+.fs {
+	height: 480px;
+	position: relative;
+	width: 100%;
+}
+.fs_inner {
+	height: 480px;
+	position: relative;
+	z-index: 1;
+}
+.ad {
+	width: 100%;
+	height: 480px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 0;
+}
+.ad a {
+	background: url(../images/back.png) no-repeat 50% 0;
+	display: block;
+	height: 470px;
+	margin-top: 10px;
+}
+.fs_col1 {
+	height: 480px;
+	width: 190px;
+	background-color: #fff;
+	float: left;
+	margin-right: 10px;
+}
+.cate_menu {
+	padding: 6px 0;
+	height: 468px;
+}
+.cate_menu_item {
+	padding-left: 18px;
+	height: 26px;
+	line-height: 26px;
+}
+.cate_menu_lk {
+	font-size: 14px;
+    color: #626262;
+    transition: color .2s ease;
+}
+.cate_menu_line {
+    font-size: 12px;
+    margin: 0 -1.5px;
+}
+.fs_col2 {
+	height: 480px;
+	width: 590px;
+	float: left;
+	margin-right: 10px;
+}
+.focus {
+	height: 470px;
+	margin-top: 10px;
+	background-color: red;
+	position: relative;
+}
+.slider_control_prev, .slider_control_next {
+	position: absolute;
+	top: 50%;
+	display: block;
+	height: 40px;
+	width: 20px;
+	background-color: rgba(0, 0, 0, .2);
+	color: #fff;
+	line-height: 40px;
+	text-align: center;
+	font-size: 20px;
+	margin-top: -20px;
+}
+.slider_control_prev:hover, .slider_control_next:hover {
+	background-color: rgba(0, 0, 0, .5);
+	color: #fff;
+}
+.slider_control_next {
+	right: 0;
+}
+.slider_indicators {
+	height: 18px;
+	position: absolute;
+	bottom: 15px;
+	left: 50px;
+}
+.slider_indicators_li {
+	height: 6px;
+	width: 6px;
+	float: left;
+	/*background-color:#000;*/
+	margin-right: 6px;
+	border: 2px solid #fff;
+	border-radius: 6px;
+}
+.current {
+	background-color: rgba(255,255,255,.9); 
+}
+.fs_col3 {
+	height: 480px;
+	width: 190px;
+	float: left;
+}
+.rec_item {
+	width: 190px;
+    height: 150px;
+	margin-top: 10px;
+}
+.fs_col4 {
+	height: 480px;
+	width: 190px;
+	background-color: #ccc;
+	float: right;
+}
+/**
+ * 	index主体结束
+ */

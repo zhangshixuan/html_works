@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        img {
+            vertical-align: top;
+        }
+        .slider {
+            height: 320px;
+            width: 750px;
+            border: 1px solid #ccc;
+            padding: 5px;
+            margin: 100px auto;
+            position: relative;
+        }
+        .slider .top {
+            height: 100%;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        .slider .top ul {
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .slider .top ul li {
+            float: left;
+            height: 320px;
+            width: 750px;
+        }
+        .slider ol {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+        }
+        .slider ol li {
+            height: 15px;
+            width: 15px;
+            background: darkgray;
+            float: left;
+            margin: 5px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .slider ol li.current {
+            background: orangered;
+        }
+    </style>
+</head>
+<body>
+    <div id="slider" class="slider">
+        <div id="top" class="top">
+            <ul id="ul">
+                <li><img src="imgs/pic01.jpg" alt=""></li>
+                <li><img src="imgs/pic02.jpg" alt=""></li>
+                <li><img src="imgs/pic03.jpg" alt=""></li>
+                <li><img src="imgs/pic04.jpg" alt=""></li>
+                <li><img src="imgs/pic05.jpg" alt=""></li>
+            </ul>
+        </div>
+        <ol id="ol">
+        </ol>
+    </div>
+
+<script src="js/myFunc.js"></script>
+<script>
+    window.onload = function () {
+        var lis = $("ul").children;
+        //1.动态计算slider的ul宽度
+        $("ul").style.width = ($("ul").children.length + 1) * $("ul").children[0].clientWidth +"px";
+
+        var currentIndex = 0;//内容索引
+        var indicatorIndex = 0;//下标索引
+
+        //1.1 克隆第一个li
+        $("ul").appendChild($("ul").children[0].cloneNode(true));
+
+        //2.动态添加下面圆点数量
+        var ol = $("ol");
+        for (var i = 0;i<$("ul").children.length-1;i++) {
+            var li = document.createElement("li");
+            if(i === 0) {
+                //2.1默认第一个选中
+                li.className = "current";
+            }
+            ol.appendChild(li);
+        }
+        //3.鼠标进入圆点
+        var olList = $("ol").children;
+        for (var k = 0;k<olList.length;k++){
+            (function (k) {
+                var li = olList[k];
+                //3.1鼠标悬浮在圆点上
+                li.onmouseover = function () {
+                    //3.2清除所有li的class，让当前选中
+                    for (var j = 0;j<olList.length;j++) {
+                        olList[j].className = "";
+                    }
+                    this.className = "current";
+                    // 3.3 动起来
+                    constant($("ul"), -($("ul").children[0].clientWidth * k), 100);
+                    currentIndex = k;
+                    indicatorIndex = k;
+                };
+            })(k);
+        }
+
+        //4.自动轮播
+        var timer = setInterval(autoPlay,1000);
+
+        //5.鼠标进入slider停止
+        $("slider").onmousemove = function () {
+            clearInterval(timer);
+        };
+        //6.鼠标离开，开始轮播
+        $("slider").onmouseout = function () {
+            timer = setInterval(autoPlay,1000);
+        };
+
+        function autoPlay() {
+            //4.1内容滚动
+            currentIndex ++ ;
+            if(currentIndex>lis.length - 1) {
+                $("ul").style.left = 0;
+                currentIndex = 1;
+            }
+            constant($("ul"),-($("ul").children[0].clientWidth * currentIndex),100);
+
+            //4.2下标切换
+            indicatorIndex ++;
+            if(indicatorIndex > olList.length-1) {
+                indicatorIndex = 0;
+            }
+            //3.2清除所有li的class，让当前选中
+            for (var j = 0;j<olList.length;j++) {
+                olList[j].className = "";
+            }
+            olList[indicatorIndex].className = "current";
+        }
+    };
+</script>
+</body>
+</html>

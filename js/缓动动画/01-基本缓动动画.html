@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            position: relative;
+        }
+        div {
+            height: 150px;
+            width: 150px;
+            background-color: orangered;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<button id="btn">向左走</button>
+<div id="box"></div>
+<script src="js/myFunc.js"></script>
+<script>
+    window.onload = function () {
+        var target = 800,timer = null;
+        var btn = $("btn"),box = $("box");
+        //1.设置定时器，让其动起来
+        btn.onmousedown = function () {
+            clearInterval(timer);
+            //1.1设置定时器
+            timer = setInterval(function () {
+                var speed = Math.ceil((target-box.offsetLeft)*0.2);
+                box.style.left = box.offsetLeft + speed + "px";
+                if(box.offsetLeft === target) {
+                    clearInterval(timer);
+                }
+            },20);
+        };
+    };
+</script>
+</body>
+</html>

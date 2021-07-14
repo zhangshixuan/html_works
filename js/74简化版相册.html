@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		.box {
+			width: 600px;
+			margin: 0 auto;
+		}
+		img {
+			border:0;
+			vertical-align:middle;
+		}
+		.bar {
+			margin: 10px 0 0 0;
+			height: 94px;
+			width: 630px;
+
+		}
+		.bar img {
+			width: 140px;
+			height: 100%;
+			display: block;
+			margin-right: 13px;
+			float: left;
+			cursor: pointer;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="box">
+		<img src="images/1.jpg" id="img"/>
+		<div class="bar" id="bar">
+			<img src="images/1.jpg"/>
+			<img src="images/2.jpg"/>
+			<img src="images/3.jpg"/>
+			<img src="images/4.jpg"/>
+		</div>
+	</div>
+	
+</body>
+<script type="text/javascript">
+	window.onload = function() {
+		//1.获取顶部图片
+		var img = document.getElementById("img");
+		//2.获取底部img集合
+		var imgList = document.getElementById("bar").children;
+		for (var i=0;i<imgList.length;i++) {
+			imgList[i].onclick = function () {
+				img.src = "";
+				//2.1将点击的src赋值给顶部图片
+				img.src = this.src.split("js/")[1];
+			}
+		}
+	};
+</script>
+</html>

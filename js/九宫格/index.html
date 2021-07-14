@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>九宫格</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+</head>
+<body>
+	<div class="button" id="button">
+        <a href="javascript:;">1列显示</a>
+        <a href="javascript:;">2列显示</a>
+		<a href="javascript:;">3列显示</a>
+		<a href="javascript:;">4列显示</a>
+		<a href="javascript:;">5列显示</a>
+	</div>
+	<div class="bottom" id="bottom">
+        <div class="box">
+            <img src="images/1.jpg" alt="">
+            <p>因为遇见你</p>
+            <p>孙怡邓伦牵手演绎刺绣奇缘</p>
+        </div>
+        <div class="box">
+            <img src="images/2.jpg" alt="">
+            <p>因为遇见你</p>
+            <p>孙怡邓伦牵手演绎刺绣奇缘</p>
+        </div>
+        <div class="box">
+            <img src="images/3.jpg" alt="">
+            <p>因为遇见你</p>
+            <p>孙怡邓伦牵手演绎刺绣奇缘</p>
+        </div>
+        <div class="box">
+            <img src="images/4.jpg" alt="">
+            <p>因为遇见你</p>
+            <p>孙怡邓伦牵手演绎刺绣奇缘</p>
+        </div>
+        <div class="box">
+            <img src="images/5.jpg" alt="">
+            <p>因为遇见你</p>
+            <p>孙怡邓伦牵手演绎刺绣奇缘</p>
+        </div>
+        <div class="box">
+            <img src="images/6.jpg" alt="">
+            <p>因为遇见你</p>
+            <p>孙怡邓伦牵手演绎刺绣奇缘</p>
+        </div>
+        <div class="box">
+            <img src="images/7.jpg" alt="">
+            <p>因为遇见你</p>
+            <p>孙怡邓伦牵手演绎刺绣奇缘</p>
+        </div>
+        <div class="box">
+            <img src="images/8.jpg" alt="">
+            <p>因为遇见你</p>
+            <p>孙怡邓伦牵手演绎刺绣奇缘</p>
+        </div>
+        <div class="box">
+            <img src="images/9.jpg" alt="">
+            <p>因为遇见你</p>
+            <p>孙怡邓伦牵手演绎刺绣奇缘</p>
+        </div>
+        <div class="box">
+            <img src="images/10.jpg" alt="">
+            <p>因为遇见你</p>
+            <p>孙怡邓伦牵手演绎刺绣奇缘</p>
+        </div>
+        <div class="box">
+            <img src="images/11.jpg" alt="">
+            <p>因为遇见你</p>
+            <p>孙怡邓伦牵手演绎刺绣奇缘</p>
+        </div>
+        <div class="box">
+            <img src="images/12.jpg" alt="">
+            <p>因为遇见你</p>
+            <p>孙怡邓伦牵手演绎刺绣奇缘</p>
+        </div>
+        <div class="box">
+            <img src="images/13.jpg" alt="">
+            <p>因为遇见你</p>
+            <p>孙怡邓伦牵手演绎刺绣奇缘</p>
+        </div>
+        <div class="box">
+            <img src="images/14.jpg" alt="">
+            <p>因为遇见你</p>
+            <p>孙怡邓伦牵手演绎刺绣奇缘</p>
+        </div>
+        <div class="box">
+            <img src="images/15.jpg" alt="">
+            <p>因为遇见你</p>
+            <p>孙怡邓伦牵手演绎刺绣奇缘</p>
+        </div>
+	</div>
+</body>
+<script type="text/javascript">
+	window.onload = function() {
+		var btns = document.getElementById("button").children;
+		var bottoms = document.getElementById("bottom").children;
+        btns[0].onclick = function () {
+            j_translate(1,bottoms);
+        };
+
+        btns[1].onclick = function () {
+            j_translate(2,bottoms);
+        };
+
+		btns[2].onclick = function () {
+			j_translate(3,bottoms);
+		};
+
+		btns[3].onclick = function () {
+			j_translate(4,bottoms);
+		};
+
+		btns[4].onclick = function () {
+			j_translate(5,bottoms);
+		};
+
+		function j_translate(allCols,eventElement) {
+			var row,col,marginXY = 50,height = 360,width = 220;
+			for(var i = 0;i<eventElement.length;i++){
+				row = parseInt(i / allCols);
+				col = parseInt(i % allCols);
+				var singleBox = eventElement[i];
+				singleBox.style.position = "absolute";
+				singleBox.style.left = col * (width + marginXY) + "px";
+				singleBox.style.top = row * (height + marginXY) + "px";
+
+			}
+		}
+	};
+</script>
+</html>

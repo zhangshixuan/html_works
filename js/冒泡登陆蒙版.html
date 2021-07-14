@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        html,body {
+            height: 100%;
+            width: 100%;
+            height: 1000px;
+        }
+        #back {
+            background-color: rgba(0 ,0 ,0 ,.2);
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: none;
+        }
+        #panel {
+            background-color: #71a4b5;
+            height: 300px;
+            width: 300px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-top: -150px;
+            margin-left: -150px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="btn">点我</button>
+    <div id="back"></div>
+    <div id="panel"></div>
+<script>
+    window.onload = function () {
+        var btn = document.getElementById("btn");
+        var back = document.getElementById("back");
+        var panel = document.getElementById("panel");
+
+        //1.点击按钮，弹出登陆框和模板
+        btn.onclick = function (event) {
+            //1.1阻止冒泡事件
+            var e = event || window.event;
+            if(e && e.stopPropagation){ // w3c标准
+                e.stopPropagation();
+            }else{ // IE系列 IE 678
+                e.cancelBubble = true;
+            }
+            //1.2显示
+            back.style.display = "block";
+            panel.style.display = "block";
+            // 1.3 隐藏滚动条
+            document.body.style.overflow = "hidden";
+
+        };
+        //点击html，除了点击登陆区域，其他地方需要关闭蒙版和登陆框
+        document.onclick = function (event) {
+            var e = event || window.event;
+            var targetId = e.target ? e.target.id : e.srcElement.id;
+            if (targetId !== "panel") {
+                back.style.display = "none";
+                panel.style.display = "none";
+                document.body.style.overflow = "auto";
+            }
+        }
+    }
+</script>
+</body>
+</html>

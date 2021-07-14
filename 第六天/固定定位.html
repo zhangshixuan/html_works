@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title></title>
+	<style type="text/css">
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		.father {
+			position: relative;
+		}
+		.top {
+			background: url(images/top.png) no-repeat top center;
+			height: 44px;
+			position: fixed;
+			top: 0;
+			width: 100%;
+		}
+		.body {
+			background: url(images/box.png) no-repeat top center;
+			margin: 44px auto 0;
+			width: 1002px;
+			height: 1760px;
+		}
+		img {
+			position: fixed;
+			top: 100px;
+		}
+		.right {
+			right: 0;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="father">
+		<img src="images/ad-l.png">
+		<img src="images/ad-r.png" class="right">
+		<div class="top"></div>
+		<div class="body">
+			<!-- <img src="images/box.png"> -->
+		</div>
+	</div>
+</body>
+</html>
